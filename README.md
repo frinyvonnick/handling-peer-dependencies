@@ -82,3 +82,5 @@ yarn link react
 ```
 
 Now the error should be fixed and you could use your module into your host app!
+
+You're all set 🙌!
