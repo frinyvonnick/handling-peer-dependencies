@@ -8,7 +8,7 @@
 - Prevents having multiple version of a same module in user's app node_modules
 - Reduce javascript files size to load on browser side particularly useful for mobile users
 
-The problem with peer dependencies is `npm` and `yarn` don't install them at all. This is the right behavior for production purpose but when you are developping you might need to test your module an host app. `npm` and `yarn` provide a command to achieve it called `link` that basically creates a symlink into the host app `node_modules` to your module source folder. It works fine but you also need to execute tasks in your module that needs these dependencies. For example, you might want to execute tests. Since they aren't present in your module's `node_modules` you will experience errors like this:
+The problem with peer dependencies is `npm` and `yarn` don't install them at all. This is the right behavior for production purpose but when you are developing you might need to test your module in a host app. `npm` and `yarn` provide a command to achieve it called `link` that basically creates a symlink into the host app `node_modules` to your module source folder. It works fine but you also need to execute tasks in your module that needs these dependencies. For example, you might want to execute tests. Since they aren't present in your module's `node_modules` you will experience errors like this:
 
 ```
 Cannot find module 'react' from 'index.js'
@@ -34,7 +34,7 @@ We have the following folder structure:
     └── package.json
 ```
 
-First of all we will set up a link so the app's node_modules folder point to the lib folder.
+First of all we will set up a link so the app's `node_modules` point to the lib folder.
 
 _You must install dependencies and you might also need to build your module first_
 
@@ -72,7 +72,7 @@ Now you could start anything that use your peer dependencies without experiencin
 
 If you follow previous steps you should have an error with the following message "hooks can only be called inside the body of a function component". This error occurs when you have multiple copies of `React` in your node_modules folder. In this [comment](https://github.com/facebook/react/issues/14257#issuecomment-439967377) Dan Abramov explain the solution to this well known issue. Let's put it into pratice.
 
-You should go in your module's `react` folder that is present in your `node_modules` and create a link. Then go back to your host app folder and use this link.
+You should go in the `react` folder that is present in your module's `node_modules` and create a link. Then go back to your host app folder and use this link.
 
 ```sh
 cd lib/node_module/react
